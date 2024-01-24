@@ -1,0 +1,492 @@
+<html>
+
+    <head>
+
+        <title>Pages</title>
+
+        <link rel="stylesheet" href="html.css">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+       <link rel="stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+       <link rel="stylesheet" media="all and (max-width:480px)" href="html.css">
+
+       
+
+    </head>
+
+    <body>
+        <hr>
+        <p><b><h3>Chapter 5. Topology Console Java Applications and Plug-ins</h3></b></p>
+
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;This chapter contains Programming Interface information.<br><br>
+
+            &nbsp;&nbsp; &nbsp;&nbsp;This chapter describes the Java applications and plug-ins provided with the<br>
+            &nbsp;&nbsp; &nbsp;&nbsp;NetView management console. You can write applications or plug-ins to enhance<br>
+            &nbsp;&nbsp; &nbsp;&nbsp;topology console operation.<br><br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;The example Java applications and plug-ins are installed as part of the NetView<br>
+           <i>&nbsp;&nbsp;&nbsp;&nbsp;Management Console Productivity Kit</i> (on the Windows platform, only). Be sure to<br>
+           &nbsp;&nbsp;&nbsp;&nbsp; perform a custom installation of the NetView management console topology<br>
+           &nbsp;&nbsp;&nbsp;&nbsp; console and select the<i> NetView Management Console Productivity Kit.</i> Because the<br>
+           &nbsp;&nbsp;&nbsp;&nbsp; technical information about these applications and plug-ins is dynamically created<br>
+           &nbsp;&nbsp;&nbsp;&nbsp; using javadoc, the applications and plug-ins cannot be described in their entirety.<br>
+           &nbsp;&nbsp;&nbsp;&nbsp; References to these examples are made here. The<i>NetView Management Console<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Productivity Kit </i>contains more detailed technical information (such as methods,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;fields, syntax and Java class hierarchy). To access this information, in the Windows<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; environment, double-click the <b>NMC Productivity Kit </b>icon on the desktop.<br><br>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;  <b>Note:</b> Though the<i> NetView Management Console Productivity Kit </i>can be installed<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; only on the Windows platform, Java application and plug-in functions are available<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; on any supported NetView management console topology console platform.</p><br><br>
+            <hr>
+            <p><b><h3>Supplied Support Files</h3></b></p>
+            <p>  &nbsp;&nbsp;&nbsp;&nbsp;The files shown in Table 26 provide additional support for the Java application and<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;  Java plug-in examples.<br>
+            <p> <i> Table 26. Files that Support the Java Examples</i></p>
+               <table  border="2" cellpadding="7" cellspacing="7">
+                <th>File </th><th>Description</th>
+                <tr><td>examples\java\ExampleJavaApp.jar</td><td>This Java ARchive (JAR) file contains the<br>
+                    compiled class files of the examples, so they<br>
+                    are immediately usable.<br></td></tr>
+                    <tr><td>examples\support\ExampleJavaApp.rsp</td><td>This server Command Profile Editor (CPE)<br>
+                        response file is used to create the context<br>
+                        menu command definitions for the example<br>
+                        Java applications so that the server can<br>
+                        include them in context menus</td></tr>
+                        <tr><td>examples\support\plugins.properties</td><td>This is a plug-in definition file that loads all<br>
+                            of the example plug-ins.<br>
+                            </td></tr>
+                            <tr><td>examples\javadoc</td><td>This is the starting point for the console API<br>
+                                documentation</td></tr></table><br>
+
+                               <p> To access these files, see the Supplied Support Files section of the<i> NetView<br>
+                                    Management Console Productivity Kit</i></p><br>
+                
+<hr>
+                      <p><b><h3>Installing the Examples</h3></b></p>
+                      <p>  &nbsp;&nbsp;&nbsp;&nbsp;The examples and support files are installed as part of the<i> NetView Management<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;Console Productivity Kit.</i> Currently, the<i> NetView Management Console Productivity Kit</i><br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;can be installed only on the Windows platform. See the Supplied Support Files<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;section of the <i>NetView Management Console Productivity Kit </i>for more information.</p><br>
+                        <hr>
+                        <p><b><h3>Enabling the Examples</h3></b></p>
+                        <p>  &nbsp;&nbsp;&nbsp;&nbsp;Although the examples have been installed, certain steps are required to enable<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;  their use. The exact steps vary, depending on how you want to access the<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;examples. You can access the examples either while connected to a server or while<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp; running the console in demonstration mode.<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp; To run the examples while signed on to a server, perform these steps:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;1. From the server workstation, access the console workstation where you have<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp; installed the example files.<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp; 2. Change to the lib directory: cd %BINDIR%\TDS\server\db\current\lib where<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;  the BINDIR environment variable defines the installation root of the server.<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp; 3. Copy the <console_system_install_path>\bin\generic_unix\TDS\client\<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp; examples\java\ExampleJavaApp.jar file to this directory. The<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp; ExampleJavaApp.jar file is now automatically downloaded to each console that<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp; subsequently signs on to this server.<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp; To run the examples in demonstration mode, perform these steps:<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;   1. From the console workstation, change to the <install path>\bin\generic_unix\<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;   TDS\client\examples\support directory.<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;  2. Issue the following command:<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp; copy plugins.properties ..\..\setting</p><br>
+                            <hr>
+                            <p><b><h3>Compiling the Examples</h3></b></p>
+<p>  &nbsp;&nbsp;&nbsp;&nbsp;It is not necessary to compile the examples before they are used. A provided JAR<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;file, examples\java\ExampleJavaApp.jar contains the compiled examples. See<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;Table 26 on page 35 for a brief description of this file.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;If you change an example, you need to recompile the example. Before you<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;recompile the examples, perform the following steps from a console workstation:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;1. Install the console code.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 2. Install Java™2 SDK, Standard Edition, v4.2 (J2SDK).<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;To recompile the examples after you have changed them, perform the following<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; steps:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;  1. Change to the <install path>\bin\generic_unix\TDS\client\examples\java<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;directory.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;2. Compile the examples by issuing the following command:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;javac -classpath %CLASSPATH%;..\..\lib\ihseuc.jar *.java<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<b> Note:</b> To compile cleanly, the CLASSPATH environment variable must include the<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;console code and the J2SDK classes.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;  3. Create a new JAR file (to contain the compiled classes) using the following<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;command:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; jar -cfv ExampleJavaApp.jar *.class<br>
+    </p>
+<hr>
+<p>  &nbsp;&nbsp;&nbsp;&nbsp;4. Make the new JAR file available. For more information about this process, see<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; “Enabling the Examples” on page 36.</p>
+    <hr>
+    <p><b><h3>Tracing the Examples</h3></b></p>
+    <p>  &nbsp;&nbsp;&nbsp;&nbsp;The examples have been instrumented with RAS tracing. You can enable this<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; tracing, perform the following steps:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;  1. Select the Options menu item and then Console Properties to open the<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;  Console Properties notebook.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;  2. Select the Service tab, which is the last tab in the notebook.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 3. Select the Customer component.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 4. In the Trace types section, click one or more of the following check boxes:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; v Constructors<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;   v Public methods<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;v Callback methods<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 5. In the Additional Tracing Controls section, check the Details box so that all of<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;the traced data is displayed.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;  6. Click OK</p><br>
+        <hr>
+        <p><b><h3>Problem Determination</h3></b></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Message IHS1011W is used to report problems encountered while loading a plug-in.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; Because plug-ins are loaded before the console window has been created, this<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;message cannot be displayed in a pop up window or recorded in the Log window.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; Therefore, it is written to stderr.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; The following errors are reported in the Why field that is specific to the plug-in:<br>
+           <b>&nbsp;&nbsp;&nbsp;&nbsp;The specified plug-in class does not exist</b><br>
+           &nbsp;&nbsp;&nbsp;&nbsp; WARNING: Could not instantiate bean "PlugIn.Does.Not.Exist"<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;from JAR "d:\Tivoli\bin\w32-ix86\..\generic_unix\TDS\client\lib\ExampleJavaApp.jar"<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;    We couldn’t open the class file "PlugIn/Does/Not/Exist.class" in the JAR<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;   IHS1011W: Unable to start a Java application.<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;  Class: PlugIn.Does.Not.Exist<br>
+           &nbsp;&nbsp;&nbsp;&nbsp; Why: Plug-in class not found<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;  Phase: 1<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;  Note: The first 3 lines of the preceding example are generated by the dynamic Java<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;   class loading mechanism of the console.<br>
+           &nbsp;&nbsp;&nbsp;&nbsp; <b> The specified plug-in class exists but does not implement the IhsIPlugIn interface</b><br>
+           &nbsp;&nbsp;&nbsp;&nbsp;  IHS1011W: Unable to start a Java application.<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;   Class: com.tivoli.ihs.client.IhsClientArgs<br>
+           &nbsp;&nbsp;&nbsp;&nbsp;    Why: Plug-in does not implement IhsIPlugIn interface<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; Phase: 2<br>
+            </p>
+            <hr>
+            <p><b><h3>Java Applications</h3></b></p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;A Java application consists of customer-written code that is initiated from a context<br>
+                &nbsp;&nbsp;&nbsp;&nbsp; menu item (as a context menu item). The Application is defined in the command<br>
+                &nbsp;&nbsp;&nbsp;&nbsp; profile editor and runs on the topology console (a Java virtual machine).<br>
+                &nbsp;&nbsp;&nbsp;&nbsp; The context menu is defined to the topology server using the CPEBATCH batch<br>
+                &nbsp;&nbsp;&nbsp;&nbsp; utility.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp; Java applications can be either resource dependent or resource independent.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp; Dependent Java applications provide information about each selected resource. The<br>
+                </p>
+                <hr>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;com.tivoli.ihs.client.action.IhsResInfo class, for example, provides this<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;  information. Java applications provide information about their associated context<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; menu items. The com.tivoli.ihs.client.action.IhsCmdInfo class, for example,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; shows this. A Java application extends the IhsJavaApplicationAdapter class.<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; After it is launched, the application can access any services provided by Java,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; certain topology console services, or any additional customer or third party<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; services. A command can be generated and issued using any of the command exits<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; provided by the topology server. For more information about command exits, see<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; Chapter 11, “Using NetView Management Console Command Profiles,” on page 93.<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;  <b> Note:</b> For more details about any of the following items, see the Java Applications<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; section of the NetView Management Console Productivity Kit:<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;  v The com.tivoli.ihs.client.action.IhsResInfo classv <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;  The com.tivoli.ihs.client.action.IhsCmdInfo class v<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;  The IhsJavaApplicationAdapter class<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;  v Topology console services<br>
+                    </p>
+                    <p><b><h3>Java Application Examples</h3></b></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;The example Java applications shown and described in Table 27 are provided with<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp; NetView management console.<br>
+                      <i>&nbsp;&nbsp;&nbsp;&nbsp;  Table 27. Available Java Application Examples</i></p>
+                      &nbsp;&nbsp;&nbsp;&nbsp;  <table  border="2" cellpadding="7" cellspacing="7">
+                        <th>File</th><th>Description</th>
+                        <tr><td>examples\java\ExampleGUIJavaApp.java</td><td>Displays context in a window. It shows<br>
+                            all of the available information about the<br>
+                            selected resources. It can be used as<br>
+                            either a resource dependent or resource<br>
+                            independent command</td></tr>
+                            <tr><td>examples\java\ExampleCmdWithResponse.java</td><td>Illustrates sending a command to the<br>
+                                IBM Tivoli NetView for z/OS program<br>
+                                and receiving all response lines for<br>
+                                subsequent processing.</td></tr>
+                                <tr><td>examples\java\ExampleGUItoIML.java</td><td>Illustrates writing a complex graphical<br>
+                                    interface. It displays the data required to<br>
+                                    start a 3174 device so that the user can<br>
+                                    select appropriate options. A command is<br>
+                                    constructed from the user input and sent<br>
+                                    to the IBM Tivoli NetView for z/OS,<br>
+                                    program. The results from the command<br>
+                                    are displayed in the console Log window.</td></tr></table>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;     <p>Note: For detailed information about these Java classes, see the Java Application<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;      Examples section of the <i>NetView Management Console Productivity Kit.</i></p><br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;       <p><b><h3>Java Application Development Process</h3></b></p>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;     Use the following software development steps when developing a Java application:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;1. Edit your application:<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;a. Use one of the provided Java application examples as a starting point.<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;b. Customize the example to meet your specific requirements.<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;2. Compile, package, and deploy your application. For more information about<br>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;this process, see “Compiling the Examples” on page 36<br>
+<hr>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;3. Enable the new Java application. For more information about this process, see<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; “Defining the Example Java Applications.”<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 4. Test the Java application in the following way:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; a. Sign on to the server containing the new code.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; b. Display the Java application in a context menu.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; c. Select the menu item and verify that it is working properly.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; d. If necessary, enable service tracing options to help diagnose problems. For<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; more information about tracing, see “Tracing the Examples” on page 37.</p><br>
+    <p><b><h3>Defining the Example Java Applications</h3></b></p>
+<p><h4><b>From the Server</b></h4></p>
+<P> &nbsp;&nbsp;&nbsp;&nbsp;To run the example Java applications while signed on to a server, perform the<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; following steps:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 1. Go to the command prompt of a workstation on which the NetView<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; management console topology server and console are both installed.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 2. Use the server CPEBATCH program to define the example Java application so that<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;  it is displayed in the context pop-up menu for a resource.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 3. Change to the bin directory (where the BINDIR environment variable defines the<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;   installation root of the server): cd %BINDIR%\TDS\server\bin.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 4. Issue the following command:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;  cpebatch <console machine install path>\bin\generic_unix\TDS\client\examples<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;\support\ExampleJavaApp.rsp -i -g</P><br>
+    <p><b><h4>In Demonstration Mode</h4></b></p>
+    <p> &nbsp;&nbsp;&nbsp;&nbsp;To run the application examples in demonstration mode, from the console<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;workstation, perform the following steps:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;  1. Change to the <install path>\bin\generic_unix\TDS\client\settings<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; directory.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;   2. Edit the basicdata.nmc file, locating the set.5.debug key (which is part of the<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;  @exJavaApps group) and changing the value from true to false<br></p>
+        <p><b><h3>Running the Example Java Applications</h3></b></p>
+        <p><b><h4>From the Server</h4></b></p>
+        <p> &nbsp;&nbsp;&nbsp;&nbsp;To run the example Java applications from the server, perform the following steps:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;  1. Start the console using the standard desktop icon.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;  2. Sign on to the appropriate server.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;    v For resource independent examples, perform the following steps:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;    a. Position the cursor over any white space in the business tree.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;    b. Right-click to display a context menu.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;    c. Select an example menu item.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;    Note: The context menu items for the example Java applications are<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;    named Example: <application>.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;    v For resource dependent examples, perform the following steps:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;    a. Open a view that contains at least one real resource.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;    b. Right-click the real resource to display a context menu.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;   c. Select an example menu item</p><br>
+<hr>
+<p> &nbsp;&nbsp;&nbsp;&nbsp;Note: The context menu items for the example Java applications are
+    &nbsp;&nbsp;&nbsp;&nbsp; named Example: <application>.
+   <p><b><h3> In Demonstration Mode</h3></b></p>
+   &nbsp;&nbsp;&nbsp;&nbsp;   To run the example Java applications in demonstration mode, perform the<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;   following steps:<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;    1. Start the console in demonstration mode using the standard desktop icon.<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;      v For resource independent examples, perform the following steps:<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;    a. Position the cursor over any white space in the business tree.<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;    b. Right-click to display a context menu.<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;   c. Select an example menu item.<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;   v For resource dependent examples, perform the following steps:<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;    a. Select Tasks → Locate Resource to open the Locate Resource window.<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;    b. Type NTFFPU20 in the entry field and then click the Locate button.<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;    c. In the view that opens, position the mouse over one of the nodes.<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;    d. Right-click to display a context menu.<br>
+   &nbsp;&nbsp;&nbsp;&nbsp;   e. Select an example menu item<br></p>
+<hr>
+<p><b><h3>Java Plug-Ins</h3></b></p>
+   
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;  Use plug-in code to control various aspects of console operation. Like a Java<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;   application, a plug-in is also Java code that runs within the topology console Java<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;    virtual machine, but differs from a Java application in that plug-ins have the<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;    following characteristics:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;    v Are not related to any view or resource.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;    v Are loaded each time you sign on to a topology server (after the plug-ins<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;  definition properties file is downloaded from the server). For more information<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;    about the definition properties file see “Plug-In Definitions File” on page 42.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;   v Remain loaded and active as long as the operator is signed on.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;  v Have call-back methods that are driven as many times as necessary.<br>
+    <p><b><h3>Supported Plug-Ins</h3></b></p>
+    &nbsp;&nbsp;&nbsp;&nbsp;   The topology console currently supports the following plug-ins:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;  v View label formatter plug-in<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;  v Log window filter plug-in<br>
+  <p><b><h3> View Label Formatter Plug-In</h3></b></p>
+  &nbsp;&nbsp;&nbsp;&nbsp;   Use the view label formatter plug-in to programmatically control the label text<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;     displayed on a topology view, a details view, or selected data windows. This<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;    plug-in must implement the IhsIPlugInViewLabel interface. To see detailed<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;    specifications, see the Java Plug-ins section of the NetView Management Console<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;    Productivity Kit.<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;    Built-in console function provides some control over the displayed label text (for<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;    example, it might be truncated at the beginning or at the end), but the number of<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;    displayed characters cannot be controlled by this console function. This plug-in can<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;    be useful if you are adhering to resource naming conventions that include fixed<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;    prefixes or suffixes.<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;    Some possibilities for customization with this plug-in include the following actions:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;    v Displaying the first N characters (where N is a number you specify)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;    v Removing common prefix or suffix text<br>
+    </p>
+    <hr>
+    <p> &nbsp;&nbsp;&nbsp;&nbsp;  Combinations of removing and displaying text<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;   The following windows are examples of data windows that use this plug-in when<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;   displaying resource names:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;    v Command for a Multi-owned Resource<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;     v Event Viewer<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;    v List Suspended Resources<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;    v Session Data<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;     v Status History<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;  Note: The Resource Properties window intentionally does not use this plug-in so<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;     that the full resource name is always available.<br>
+        <p><b><h3>Log Window Filter Plug-In</h3></b></p>
+        &nbsp;&nbsp;&nbsp;&nbsp;   Commands, their generated responses, and console generated messages are<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;   centrally collected and displayed in the console Log window. Use the log window<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;   filter plug-in to programmatically control the Log window contents. This plug-in<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;   must implement the IhsIPlugInLog interface. For detailed information about the<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;   IhsIPlugInLog interface, see the Java Plug-ins section of the NetView Management<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;   Console Productivity Kit. A new Log window entry can be handled in the following<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;   way:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;    v It can be added as is.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;    – The standard Log window display color is automatically used.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;   v It can be added with changes:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;    – The text can be modified.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;    – An override to the standard Log window display color can be specified.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;   v It can be suppressed.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;    You can also use this plug-in to initiate customer specific processing that results<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;    from a particular command.<br>
+       <p><b><h3> Additional Plug-In Support</h3></b></p>
+       &nbsp;&nbsp;&nbsp;&nbsp;     To determine which plug-ins are loaded, see the Environment Information window.<br>
+       &nbsp;&nbsp;&nbsp;&nbsp;     The information shown in Table 28 is displayed for each active plug-in. For more<br>
+       &nbsp;&nbsp;&nbsp;&nbsp;   information, see the Java Plug-Ins section of the <i>NetView Management Console</i><br>
+       &nbsp;&nbsp;&nbsp;&nbsp;    Productivity Kit.<br>
+       <i>&nbsp;&nbsp;&nbsp;&nbsp;   Table 28. Values for Plug-ins as Shown in the Environment Information Window</i></p><br>
+       <table  border="2" cellpadding="7" cellspacing="7">
+        <th>Field Column</th><th>Value Column</th>
+        <tr><td>plug-in class name>:data</td><td>Initialization data passed to the<br>
+            setPlugInData() method</td></tr>
+            <tr><td>plug-in class name>:desc</td><td>Description as provided by the<br>
+                getPlugInDescription() method</td></tr>
+                <tr><td>plug-in class name>:version</td><td>Version as provided by the getPlugInVRM()<br>
+                    method</td></tr>
+                    <tr><td>plug-in class name>:debug</td><td>Debug information as provided by the<br>
+                        toString() method.<br>
+                       Note: If the string returned by toString()<br>
+                           contains dynamic information, the Refresh,<br>
+                          button can be used to update this value<br>
+                     without closing the window. The example<br>
+                              plug-ins provide a template for this.<br>
+                        </td></tr></table>
+                        <hr>
+                        <p><b>Notes:</b><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;      1. The -noPlugin command-line argument overrides automatic plug-in loading as<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;      each console calls the plug-in.<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;     2. When specified, the plug-in properties file is not processed after sign on</p><br>
+<p><b><h3>Plug-In Definitions File</h3></b></p><br>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;  The plugins.properties file defines the console plug-ins that are to be loaded. This<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;   file is downloaded, after sign on, from the db\current\settings directory of the<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;   server.<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;  Syntax for the plugins.properties file is shown in the following example:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;   ****************************************************************************<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;   * Define the plug-ins to be loaded during Console initialization<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;   * for every console that signs on to this server<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;   ****************************************************************************<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;   plugin.1.class = required full package qualified class name<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;   plugin.1.data = optional data passed to the setPlugInData() method for runtime use<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;   plugin.2.class = <another><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;   plugin.3.class = <another></p><br>
+        <p><b><h4>Plug-In Examples</h4></b></p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;  The example Java plug-ins shown in Table 29 can be used to enhance base console<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;   operation.<br>
+            </p>
+            <p><i>&nbsp;&nbsp;&nbsp;&nbsp;  Table 29. Java Plug-in Examples</i></p>
+            <table  border="2" cellpadding="7" cellspacing="7">
+                <th>File</th><th>Description</th>
+                <tr><td>examples\java\ExampleLogPlugIn.java </td><td>Provides control over items (commands,<br>
+                    responses, or messages) that are added to<br>
+                    the console Log window<br>
+                    Also see “Log Window Filter Plug-In” on<br>
+                    page 41.</td></tr>
+                    <tr><td>examples\java\ExampleViewLabelPlugIn.java </td><td>Provides control over the label that is<br>
+                        displayed for a resource<br>
+                        Also see “View Label Formatter Plug-In”<br>
+                        on page 40</td></tr></table>
+                        <p><b>Notes:</b></p>
+                         <p>&nbsp;&nbsp;&nbsp;&nbsp;    1. To use these example plug-ins to meet your specific requirements, specify the<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;     parameters in the data definition of the appropriate plug-in.<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;      2. More information about all of the following items is available in the Java<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;     Plug-Ins section of the NetView Management Console Productivity Kit:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;     v Log window filter<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;     v com.tivoli.ihs.extern.plugin.IhsIPlugInLog interface<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;     v View label formatter<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;     v com.tivoli.ihs.extern.plugin.IhsIPlugInViewLabel interface<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;     v ExampleLogPlugIn class<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;     v ExampleViewLabelPlugIn class<br>
+                            <p><b><h3>Plug-In Development Process</h3></b></p>
+                            &nbsp;&nbsp;&nbsp;&nbsp;    To develop a plug-in, use the following steps:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;     1. Edit an example in the following way</p><br>
+                            <hr>
+                            <p>a. Use one of the provided plug-in examples as a starting point.<br>
+                                b. Customize the example to meet your specific requirements.<br>
+                                2. Compile, package, and deploy your plug-in. For more information about this<br>
+                                process, see “Compiling the Examples” on page 36.<br>
+                                3. Enable the plug-in. For more information about this process, see “Defining the<br>
+                                Example Java Plug-Ins.”<br>
+                                4. Test the plug-in using the following steps:<br>
+                                a. Sign on to the server where the plug-in code resides.<br>
+                                b. From the Environment Information window, perform the following steps:<br>
+                                1) Verify that the plug-in has been successfully loaded.<br>
+                                2) Examine any debugging information externalized by the toString()<br>
+                                method.<br>
+                                c. Generate a scenario in which the function for the plug-in code should be<br>
+                                performed and verify that it is working properly.<br>
+                                d. If necessary, enable service tracing to help diagnosis problems. For more<br>
+                                information about tracing, see “Tracing the Examples” on page 37.<br>
+                                </p>
+                                <p><b><h3>Defining the Example Java Plug-Ins</h3></b></p>
+                                <p><h4><b>From the Server</b></h4></p>
+                                <p>To run the example plug-ins while signed on to a server, perform the following<br>
+                                    steps:<br>
+                                    1. Go to the command prompt of a workstation on which the NetView<br>
+                                    management console topology server and console are both installed.<br>
+                                    2. Change to the settings directory (where the BINDIR environment variable<br>
+                                    defines the installation root of the server): cd %BINDIR%\TDS\server\db\<br>
+                                    current\settings<br>
+                                    3. Copy the following file to the %BINDIR%\TDS\server\db\current\settings<br>
+                                    directory: <console machine install path>\bin\generic_unix\TDS\client\<br>
+                                    examples\support\plugins.properties.<br>
+                                    </p>
+                                    <p><b><h4>In Demonstration Mode</h4></b></p>
+                                    <p>To run the example plug-ins in demonstration mode, from the console workstation,<br>
+                                        perform the following steps:<br>
+                                        1. Change to directory <install path>\bin\generic_unix\TDS\client\examples\<br>
+                                        support.<br>
+                                        2. Issue the following command: copy plugins.properties ..\..\settings</p><br>
+                                        <p><b><h3>Running the Example Java Plug-Ins</h3></b></p>
+                                        <p><h4><b>Running the Log Window Filter Plug-In: In a Live NetView
+                                            Management Console System</b></h4></p>
+                                            <p>Start the console by double clicking the standard desktop icon.<br>
+                                                v To suppress message IHS2267:<br>
+                                                1. Select <b>Tasks → Send Message...</b> from the server or another console to<br>
+                                                broadcast a message to this console.<br>
+                                                The broadcast message entered is displayed (prefixed by IHS2267) in a<br>
+                                                message box. The example plug-in suppresses the addition of this message to<br>
+                                                the Log window.<br>
+                                                v To suppress message IHS1107:<br>
+                                                1. Select<b> Tasks → Locate</b> Resource to open the Locate Resource window.<br>
+                                                </p>
+                                            <hr>
+                                            <p>2. Type NEVER in the entry field and then click the<b> Locate</b> button.<br>
+                                                Message IHS1107 is displayed in a message box. The example plug-in<br>
+                                                suppresses the addition of this message to the<b> Log </b>window.<br>
+                                               <b> Note:</b> Locate Resource generates message IHS1080 in demonstration mode.<br>
+                                                </p>
+                                                <p><b><h3>Running the View Label Plug-In: In Demonstration Mode</h3></b></p>
+                                                <p>To begin, start the console in demonstration mode by double clicking the <b>NMC</b><br>
+                                                    Demo desktop icon and perform the following steps:<br>
+                                                    1. Select<b> Tasks → Locate</b> Resource to open the Locate Resource window.<br>
+                                                    2. Type NTFFPU20 in the entry field and click the<b> Locate</b> button.<br>
+                                                    v A view is displayed.<br>
+                                                    v The names of the three nodes in this view are network qualified with<br>
+                                                    USIBMNT.<br>
+                                                    v The example plug-in suppresses the display of the network qualifier on the<br>
+                                                    view (in either topology or details mode).<br>
+                                                    3. Position the cursor over the label of a node to display the fully qualified name<br>
+                                                    in the fly-over section of the status bar</p><br>
+                                                </body>
+                                                <style>
+                                                      body{
+                padding-left: 30%;
+            }
+            hr{
+    background:black;
+    height:2px;
+    position: relative;
+    border: none;
+}
+table{
+    font-size: small;
+}
+                                                </style>
